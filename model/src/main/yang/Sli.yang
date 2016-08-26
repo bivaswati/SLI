@@ -1,0 +1,76 @@
+module Sli {
+
+    yang-version 1;
+
+    //NOTE: The namespace should really have the app name in it (module name). However
+    //due to maven archetype issues, we were not able to dynamically add it here.
+    //If copying this project you should modify the namespace.
+    namespace "brocade:sample";
+
+    prefix sample;
+    import ietf-inet-types { prefix "ietf"; revision-date "2010-09-24"; }
+
+    organization "Brocade Communication System";
+
+    contact
+      "Sample Person <someone@com.att.sli>";
+
+    description
+      "Defines a sample yang file to illustrate containers";
+
+    revision "2015-01-15" {
+      description
+        "A sample yang model describing a list of tasks. Each task maintains a operational run count, which is increased
+        when the runTask RPC is invoked.";
+    }
+
+    /* do - configure RPC will be exposed to outside world .
+    *  Input parameteres are declared with assumption
+    */
+    rpc do-configure {
+        description "Initial revision of sli model which take requests from Ecomp ;
+        Currently RPC is implemented for changing Interface's Description";
+        input {
+            leaf device-name {
+                type string;
+            }
+            leaf device-type {
+                type string;
+            }
+            leaf device-model {
+                type string;
+            }
+            leaf device-ip {
+                type ietf:ipv4-address;
+            }
+            leaf device-user-name {
+                type string;
+            }
+            leaf device-password {
+                type string;
+            }
+            leaf device-interface-name {
+                type string;
+            }
+            leaf device-interface-type {
+                type string;
+            }
+            leaf device-configure-type {
+                type string;
+            }
+            leaf device-operation-type {
+                type string;
+            }
+            leaf file-name {
+                type string;
+            }
+        }
+        output {
+            leaf status {
+                type string;
+            }
+        }
+    }
+   
+
+}
